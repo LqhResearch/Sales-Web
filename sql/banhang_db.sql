@@ -119,16 +119,8 @@ CREATE TABLE `shippers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `shippers`
+-- Chỉ mục cho các bảng đã đổ
 --
-
-INSERT INTO `shippers` (`ShipperID`, `ShipperName`, `Phone`) VALUES
-(2, 'Nguyễn Văn B', '123456789'),
-(3, 'ABC', '123456789'),
-(4, 'ABC', '123456789'),
-(5, 'Đỗ Thành Ý dty', '123456789'),
-(6, 'Nguyễn Văn A', '123456789'),
-(7, 'Trần Quốc Đảm', '0364846555');
 
 -- --------------------------------------------------------
 
@@ -250,7 +242,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT cho bảng `shippers`
 --
 ALTER TABLE `shippers`
-  MODIFY `ShipperID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ShipperID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `suppliers`

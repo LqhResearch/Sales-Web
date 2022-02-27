@@ -2,16 +2,20 @@
 <?php include '../sidebar.php'?>
 
 <?php
-
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = "";
     $phone = "";
-    if(isset($_POST['name'])) $name = $_POST['name'];
-    if(isset($_POST['phone'])) $phone = $_POST['phone'];
+    if (isset($_POST['name'])) {
+        $name = $_POST['name'];
+    }
+
+    if (isset($_POST['phone'])) {
+        $phone = $_POST['phone'];
+    }
 
     $sql = "INSERT INTO Shippers VALUES (null, '$name', '$phone')";
-    if(Database::NonQuery($sql)) {
-        $message = "Success";
+    if (Database::NonQuery($sql)) {
+        $message = "Thêm thành công";
     }
 }
 ?>
@@ -21,7 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($message)) {
         echo '
             <div class="alert alert-success">
-                <strong>Success!</strong> Thêm thành công
+                <strong>Success!</strong> ' . $message . '
             </div>
         ';
     }
