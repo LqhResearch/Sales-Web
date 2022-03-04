@@ -1,6 +1,7 @@
 <?php include_once dirname(__FILE__) . '/config/config.php'?>
-<?php include_once dirname(__FILE__) . '/config/database.php'?>
+<?php include_once dirname(__FILE__) . '/config/Database.php'?>
 <?php include_once dirname(__FILE__) . '/config/Excel_Database.php'?>
+<?php include_once dirname(__FILE__) . '/config/File.php'?>
 
 <!DOCTYPE html>
 <html lang="en">

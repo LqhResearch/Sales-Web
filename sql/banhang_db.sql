@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 23, 2022 lúc 05:09 AM
+-- Thời gian đã tạo: Th3 02, 2022 lúc 05:03 AM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 7.4.27
 
@@ -32,6 +32,13 @@ CREATE TABLE `categories` (
   `CategoryName` varchar(255) NOT NULL,
   `Description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `categories`
+--
+
+INSERT INTO `categories` (`CategoryID`, `CategoryName`, `Description`) VALUES
+(1, 'Điện thoại', '');
 
 -- --------------------------------------------------------
 
@@ -102,9 +109,19 @@ CREATE TABLE `products` (
   `ProductName` varchar(255) NOT NULL,
   `Unit` int(11) NOT NULL,
   `Price` float NOT NULL,
+  `Picture` varchar(255) NOT NULL,
   `SupplierID` int(11) NOT NULL,
   `CategoryID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `products`
+--
+
+INSERT INTO `products` (`ProductID`, `ProductName`, `Unit`, `Price`, `Picture`, `SupplierID`, `CategoryID`) VALUES
+(1, 'Iphone 13', 0, 25000, '', 2, 1),
+(2, 'Iphone 13', 0, 25000, '../uploads/iphone-13-mini-blue-2-600x600.jpg', 2, 1),
+(4, 'Tai nghe', 0, 5000, '../uploads/10042790-tai-nghe-bluetooth-prolink-phb6003e-den-do-1.jpg', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -119,8 +136,17 @@ CREATE TABLE `shippers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Đang đổ dữ liệu cho bảng `shippers`
 --
+
+INSERT INTO `shippers` (`ShipperID`, `ShipperName`, `Phone`) VALUES
+(2, 'Nguyễn Văn B', '123456789'),
+(3, 'ABC', '123456789'),
+(4, 'ABC', '123456789'),
+(5, 'Đỗ Thành Ý dty', '123456789'),
+(6, 'Nguyễn Văn A', '123456789'),
+(7, 'Trần Quốc Đảm', '0364846555'),
+(8, '', '');
 
 -- --------------------------------------------------------
 
@@ -138,6 +164,15 @@ CREATE TABLE `suppliers` (
   `Country` varchar(255) NOT NULL,
   `Phone` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `suppliers`
+--
+
+INSERT INTO `suppliers` (`SupplierID`, `SupplierName`, `ContactName`, `Address`, `City`, `PostalCode`, `Country`, `Phone`) VALUES
+(1, 'Vinamilk', '', '', '', '', '', ''),
+(2, 'Thế giới di động', '', '', '', '', '', ''),
+(3, 'Vingroup', '', '', '', '', '', '');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -206,7 +241,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `CategoryID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `customer`
@@ -236,19 +271,19 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `shippers`
 --
 ALTER TABLE `shippers`
-  MODIFY `ShipperID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ShipperID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

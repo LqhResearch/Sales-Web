@@ -3,15 +3,8 @@
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = "";
-    $phone = "";
-    if (isset($_POST['name'])) {
-        $name = $_POST['name'];
-    }
-
-    if (isset($_POST['phone'])) {
-        $phone = $_POST['phone'];
-    }
+    $name = isset($_POST['name']) ? $_POST['name'] : '';
+    $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
 
     $sql = "INSERT INTO Shippers VALUES (null, '$name', '$phone')";
     if (Database::NonQuery($sql)) {

@@ -35,7 +35,7 @@ if (isset($_POST['export-excel'])) {
         </div>
         <div class="mt-3 ms-3">
             <a href="add.php" class="btn btn-primary">Thêm mới</a href="add.php">
-            <form action="#" method="POST" class="excel" enctype="multipart/form-data">
+            <form action="#" method="POST" class="excel" enctype="multipart/form-data" >
                 <input type="file" name="import-excel">
                 <button name="import-excel-btn" class="btn btn-success">
                     <i class="far fa-file-excel"></i> Import
@@ -43,7 +43,7 @@ if (isset($_POST['export-excel'])) {
             </form>
             <form action="#" method="POST" class="excel">
                 <button name="export-excel" class="btn btn-success">
-                    <i class="far fa-file-excel"></i> Export
+                <i class="far fa-file-excel"></i> Export
                 </button>
             </form>
         </div>
@@ -52,23 +52,31 @@ if (isset($_POST['export-excel'])) {
                 <thead>
                     <tr>
                         <th scope="col">ID. </th>
-                        <th scope="col">Tên shipper</th>
-                        <th scope="col">Số điện thoại</th>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col">Đơn vị</th>
+                        <th width="col">Giá</th>
+                        <th width="col">Hình ảnh</th>
+                        <th width="col">Nhà cung cấp</th>
+                        <th width="col">Danh mục</th>
                         <th width="69">Sửa</th>
                         <th width="69">Xoá</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $shippers = Database::GetData("SELECT * FROM Shippers ORDER BY ShipperID DESC");
-                    foreach ($shippers as $shipper) {
+                    $products = Database::GetData("SELECT * FROM products, categories, suppliers WHERE products.SupplierID = suppliers.SupplierID AND products.CategoryID = categories.CategoryID ORDER BY ProductID");
+                    foreach ($products as $product) {
                         echo '
                             <tr>
-                                <th scope="row">' . $shipper["ShipperID"] . '</th>
-                                <td>' . $shipper["ShipperName"] . '</td>
-                                <td>' . $shipper["Phone"] . '</td>
-                                <td><a href="edit.php?id=' . $shipper["ShipperID"] . '" class="btn btn-success">Sửa</a></td>
-                                <td><a href="?del-id=' . $shipper["ShipperID"] . '" class="btn btn-danger">Xóa</a></td>
+                                <th scope="row">' . $product["ProductID"] . '</th>
+                                <td>' . $product["ProductName"] . '</td>
+                                <td>' . $product["Unit"] . '</td>
+                                <td>' . $product["Price"] . '</td>
+                                <td><img height="100" src="' . $product["Picture"] . '"/></td>
+                                <td>' . $product["SupplierName"] . '</td>
+                                <td>' . $product["CategoryName"] . '</td>
+                                <td><a href="edit.php?id=' . $product["ProductID"] . '" class="btn btn-success">Sửa</a></td>
+                                <td><a href="?del-id=' . $product["ProductID"] . '" class="btn btn-danger">Xóa</a></td>
                             </tr>
                         ';
                     }
@@ -83,10 +91,10 @@ if (isset($_POST['export-excel'])) {
     integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-var importExcel = document.querySelector('input[name="import-excel"]');
-importExcel.onchange = function() {
-    importExcel.parentElement.querySelector('button').click();
-}
+    var importExcel = document.querySelector('input[name="import-excel"]');
+    importExcel.onchange = function () {
+        importExcel.parentElement.querySelector('button').click();
+    }
 </script>
 
 <?php include '../footer.php'?>
