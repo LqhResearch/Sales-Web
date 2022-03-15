@@ -3,11 +3,26 @@ body {
 }
 
 header {
-    background: center / cover no-repeat url('../img/footer_image.jpg');
+    background: center / cover no-repeat url('../img/header_image.jpg');
     color: white;
 }
 
 .lg--blue {
     background: linear-gradient(135deg, #02ccc5 13%, #02a9c4 84%);
     color: white;
+}
+
+.d-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-login {
+    height: 100vh;
+    background: center / cover no-repeat url('../img/header_image.jpg');
+}
+
+.page-login .card {
+    width: 500px;
 }

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 02, 2022 lúc 05:03 AM
+-- Thời gian đã tạo: Th3 15, 2022 lúc 02:08 PM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
--- Phiên bản PHP: 7.4.27
+-- Phiên bản PHP: 8.0.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -107,7 +107,7 @@ CREATE TABLE `orders` (
 CREATE TABLE `products` (
   `ProductID` int(11) NOT NULL,
   `ProductName` varchar(255) NOT NULL,
-  `Unit` int(11) NOT NULL,
+  `Unit` varchar(20) NOT NULL,
   `Price` float NOT NULL,
   `Picture` varchar(255) NOT NULL,
   `SupplierID` int(11) NOT NULL,
@@ -119,9 +119,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ProductID`, `ProductName`, `Unit`, `Price`, `Picture`, `SupplierID`, `CategoryID`) VALUES
-(1, 'Iphone 13', 0, 25000, '', 2, 1),
-(2, 'Iphone 13', 0, 25000, '../uploads/iphone-13-mini-blue-2-600x600.jpg', 2, 1),
-(4, 'Tai nghe', 0, 5000, '../uploads/10042790-tai-nghe-bluetooth-prolink-phb6003e-den-do-1.jpg', 2, 1);
+(1, 'Casio fx-580VN', 'Chiếc', 525000, '../uploads/casio-580.png', 2, 1),
+(2, 'Tai nghe', 'Cái', 5000, '../uploads/tai-nghe.jpg', 2, 1),
+(3, 'Iphone 13', 'Chiếc', 22000000, '../uploads/iphone-13.jpg', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -140,13 +140,7 @@ CREATE TABLE `shippers` (
 --
 
 INSERT INTO `shippers` (`ShipperID`, `ShipperName`, `Phone`) VALUES
-(2, 'Nguyễn Văn B', '123456789'),
-(3, 'ABC', '123456789'),
-(4, 'ABC', '123456789'),
-(5, 'Đỗ Thành Ý dty', '123456789'),
-(6, 'Nguyễn Văn A', '123456789'),
-(7, 'Trần Quốc Đảm', '0364846555'),
-(8, '', '');
+(1, 'Nguyễn Văn AB', '0987654321');
 
 -- --------------------------------------------------------
 
@@ -173,6 +167,29 @@ INSERT INTO `suppliers` (`SupplierID`, `SupplierName`, `ContactName`, `Address`,
 (1, 'Vinamilk', '', '', '', '', '', ''),
 (2, 'Thế giới di động', '', '', '', '', '', ''),
 (3, 'Vingroup', '', '', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `users`
+--
+
+CREATE TABLE `users` (
+  `Username` varchar(64) NOT NULL,
+  `Password` varchar(64) NOT NULL,
+  `Fullname` varchar(64) NOT NULL,
+  `Email` varchar(64) NOT NULL,
+  `Role` int(11) NOT NULL,
+  `Avatar` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`Username`, `Password`, `Fullname`, `Email`, `Role`, `Avatar`) VALUES
+('Admin', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'Quản trị viên', 'admin@gmail.com', 0, '../uploads/software-engineer.png'),
+('LQH', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'Quốc Hưng', 'lqh@gmail.com', 1, '../uploads/user.png');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -234,6 +251,13 @@ ALTER TABLE `suppliers`
   ADD PRIMARY KEY (`SupplierID`);
 
 --
+-- Chỉ mục cho bảng `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`Username`),
+  ADD UNIQUE KEY `Email` (`Email`);
+
+--
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
@@ -271,13 +295,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `shippers`
 --
 ALTER TABLE `shippers`
-  MODIFY `ShipperID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ShipperID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `suppliers`

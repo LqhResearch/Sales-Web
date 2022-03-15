@@ -1,10 +1,10 @@
 <?php
 class Database
 {
-    private const HOST = "localhost";
-    private const USERNAME = "root";
-    private const PASSWORD = "";
-    private const DBNAME = "banhang_db";
+    private const HOST = 'localhost';
+    private const USERNAME = 'root';
+    private const PASSWORD = '';
+    private const DBNAME = 'banhang_db';
 
     /**
      * Tạo kết nối với CSDL
@@ -13,7 +13,7 @@ class Database
     {
         $connect = new mysqli(self::HOST, self::USERNAME, self::PASSWORD, self::DBNAME);
         if ($connect->connect_error) {
-            die("Connection failed: " . $connect->connect_error);
+            die('Connection failed: ' . $connect->connect_error);
         }
         return $connect;
     }
